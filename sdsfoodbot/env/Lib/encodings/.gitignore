@@ -1,0 +1,11 @@
+/__init__.pyc
+/aliases.pyc
+/ascii.pyc
+/cp949.pyc
+/idna.pyc
+/latin_1.pyc
+/mbcs.pyc
+/utf_16_be.pyc
+/utf_16_le.pyc
+/utf_32_be.pyc
+/utf_8.pyc
