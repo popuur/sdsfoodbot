@@ -32,7 +32,7 @@ def Message():
         for i, menu in enumerate(g):
             a += str(i+1) +". "+ menu.get_text() + "\n"
             
-        a += "\n맛있는 식사하세요!"
+        a += u"\n맛있는 식사하세요!"
         dataSend = {
             "message": {
                 "text": a
