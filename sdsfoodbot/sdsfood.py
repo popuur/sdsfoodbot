@@ -9,7 +9,7 @@ class sdsfood:
         
     def get_day (self):
         day = self.bs.find("span", {'style' : 'font-size: 13px; color: #d6a066'}).get_text().split()
-        return day
+        return " ".join(day) + "\n"
 
     def get_menu(self, store_str, classId):
         store = self.bs.find("div", class_=classId)

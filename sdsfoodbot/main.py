@@ -25,7 +25,8 @@ def Message():
     content = dataReceive['content']
     if content == u"잠실식단":
         bs_sdsfood = sdsfood()
-        strM = bs_sdsfood.get_day() + "\n"
+        strM = ""
+        strM += bs_sdsfood.get_day()
         
         b1_kor1 = bs_sdsfood.get_menu(u"[코1] ", "E59C-group-item")
         b1_kor2 = bs_sdsfood.get_menu(u"[코2] ", "E59D-group-item")
