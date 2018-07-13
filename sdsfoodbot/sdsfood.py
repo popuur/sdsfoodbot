@@ -10,11 +10,21 @@ class sdsfood:
     def get_day (self):
         day = self.bs.find("span", {'style' : 'font-size: 13px; color: #d6a066'}).get_text().split()
         return " ".join(day) + "\n"
+    
+    def get_open (self):
+        open = self.bs.find(class_="notice-bold").get_text().split()
+        result = False
+        if open :
+            result = False
+        else :
+            result = True
+        return result
+
 
     def get_menu(self, store_str, classId):
         store = self.bs.find("div", class_=classId)
         if store :
-            store_list = store.find("span", {'style' : 'font-size: 16px;font-weight: bold'})
+            store_list = store.find_all("span", {'style' : 'font-size: 16px;font-weight: bold'})
             num = 0;
             menu_str = ""
             for i in store_list:
