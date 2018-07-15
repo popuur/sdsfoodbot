@@ -12,8 +12,8 @@ class sdsfood:
         return " ".join(day) + "\n"
     
     def get_open (self):
-        open = self.bs.find(class_="notice-bold").get_text().split()
         result = False
+        open = self.bs.find(class_="notice-bold")
         if open :
             result = False
         else :
@@ -30,7 +30,7 @@ class sdsfood:
             for i in store_list:
                 if num > 0 :
                     menu_str += ", "
-                menu_str += unicode(i)
+                menu_str += i.get_text()
                 num += 1;
             store = store_str + menu_str +"\n"
         else :
