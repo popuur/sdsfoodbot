@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import logging
+import random
 from flask import Flask, request, jsonify
 from datetime import datetime
 from sdsfood import sdsfood
@@ -15,7 +16,7 @@ def hello():
 def Keyboard():
     dataSend = {
         "type": "buttons",
-        "buttons": ["잠실식단"]
+        "buttons": ["잠실식단", "랜덤추천"]
     }
     return jsonify(dataSend)
 
@@ -63,17 +64,45 @@ def Message():
             },
             "keyboard": {
                 "type": "buttons",
-                "buttons": ["잠실식단"]
+                "buttons": ["잠실식단", "랜덤추천"]
             }
         }
-    elif content == u"도움말":
+    elif content == u"랜덤추천":
+        bs_sdsfood = sdsfood()
+        str_message = ""
+        
+        check = bs_sdsfood.get_open()
+        if check :
+        
+            str_message += bs_sdsfood.get_day()
+            menu_list = []
+            
+            b1_kor1 = bs_sdsfood.get_menu_list(u"\n* B1\n[코1] ", "E59C-group-item")
+            b1_kor2 = bs_sdsfood.get_menu_list(u"\n* B1\n[코2] ", "E59D-group-item")
+            b1_west = bs_sdsfood.get_menu_list(u"\n* B1\n[웨스] ", "E59E-group-item") 
+            b1_tang = bs_sdsfood.get_menu_list(u"\n* B1\n[탕맛] ", "E59F-group-item")
+            b1_gats = bs_sdsfood.get_menu_list(u"\n* B1\n[가츠] ", "E59G-group-item")
+            b1_take = bs_sdsfood.get_menu_list(u"\n* B1\n[테킷] ", "E59H-group-item")
+          
+            b2_xing = bs_sdsfood.get_menu_list(u"\n* B2\n[씽푸] ", "E5E6-group-item")
+            b2_myun = bs_sdsfood.get_menu_list(u"\n* B2\n[미각] ", "E5E7-group-item")
+            b2_poli = bs_sdsfood.get_menu_list(u"\n* B2\n[나폴] ", "E5E8-group-item")
+            b2_bibi = bs_sdsfood.get_menu_list(u"\n* B2\n[비빈] ", "E5E9-group-item")
+            b2_asia = bs_sdsfood.get_menu_list(u"\n* B2\n[아시] ", "E5EA-group-item")
+            b2_chef = bs_sdsfood.get_menu_list(u"\n* B2\n[쉐프] ", "E5EB-group-item")
+    
+            menu_list = b1_kor1 + b1_kor2 + b1_west + b1_tang + b1_gats + b1_take + b2_xing + b2_myun + b2_poli + b2_bibi + b2_asia + b2_chef 
+            str_message += random.choice(menu_list)
+            str_message += u"\n\n추천메뉴와 함께 맛있는 식사하세요!"
+        else :
+            str_message = u"즐거운 휴일되세요!"
         dataSend = {
             "message": {
-               "text": "도움말인데 클났음"
+               "text": str_message
             },
             "keyboard": {
                 "type": "buttons",
-                "buttons": ["잠실식단"]
+                "buttons": ["잠실식단", "랜덤추천"]
             }
         }
     return jsonify(dataSend)

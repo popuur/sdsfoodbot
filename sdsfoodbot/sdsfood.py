@@ -36,3 +36,12 @@ class sdsfood:
         else :
             store = ""
         return store
+    
+    def get_menu_list(self, store_str, classId):
+        store = self.bs.find("div", class_=classId)
+        menu = []
+        if store :
+            store_list = store.find_all("span", {'style' : 'font-size: 16px;font-weight: bold'})
+            for i in store_list:
+                menu.append(store_str+" "+i.get_text())
+        return menu
