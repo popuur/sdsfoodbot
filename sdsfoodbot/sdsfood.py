@@ -69,7 +69,8 @@ class sdsfood:
                     menu_name = i.find("span", {'style' : 'font-size: 16px;font-weight: bold'})
                     menu_material = i.find("span", {'style' : 'font-size: 10px;color: #737373'})
                     menu_kcal = i.find("span", {'style' : 'display: inline-block;font-size: 10px;color: #adadad;margin-top: 3px'})
-                    menu_img = i.img['src']
+                    #menu_img = i.img['src']
+                    menu_img = i.find("img")
                     
                     if menu_name:
                         menu.append(menu_name.get_text())
@@ -84,6 +85,7 @@ class sdsfood:
                     else :
                         menu.append("")
                     if menu_img:
+                        menu_img = i.img['src']
                         menu.append(menu_img)
                     else:
                         menu.append("")

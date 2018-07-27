@@ -89,24 +89,31 @@ def Message():
     
     end = time.time() - start
     end = str(end)
-    dataSend = {
-        "message": {
-           "text": str_message+"\n"+end,
-            "photo": {
-                "url": img_url,
-                "width": 640,
-                "height": 480
-              }
-        },
-        "message_button": {
-            "label": "잠실메뉴",
-            "url": "http://www.sdsfoodmenu.co.kr:9106/foodcourt/menuplanner/list"
-        },
-        "keyboard": {
-            "type": "buttons",
-            "buttons": ["잠실식단", "랜덤추천"]
+    if img_url : 
+        dataSend = {
+            "message": {
+               "text": str_message+"\n"+end,
+                "photo": {
+                    "url": img_url,
+                    "width": 600,
+                    "height": 400
+                  }
+            },
+            "keyboard": {
+                "type": "buttons",
+                "buttons": ["잠실식단", "랜덤추천"]
+            }
         }
-    }   
+    else :
+        dataSend = {
+            "message": {
+               "text": str_message+"\n"+end
+            },
+            "keyboard": {
+                "type": "buttons",
+                "buttons": ["잠실식단", "랜덤추천"]
+            }
+        }
     return jsonify(dataSend)
 
 
