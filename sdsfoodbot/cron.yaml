@@ -1,0 +1,4 @@
+cron:
+- description: "sds menu job"
+  url: /get_menu
+  schedule: every 6 hours from 02:00 to 21:00
