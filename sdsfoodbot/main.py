@@ -42,15 +42,25 @@ def Message():
         menu_db_list = bs_sdsfood.get_day_list_from_db()
         str_message += menu_db_list[1]
         if content == u"잠실식단":
-            strB1 = u"\n* B1\n" 
-            strB2 = u"\n* B2\n" 
+            strB1 = u"\n* B1" 
+            strB2 = u"\n* B2" 
             
             cntB2 = 0
             for menu in menu_db_list[2]:
                 if menu[6] == u"B1":
-                    strB1 += menu[5]+" "+menu[1]+"\n"
+                    strB1 += "\n"
+                    strB1 += menu[5]
+                    if menu[7] == 1 :
+                        strB1 +=" "+menu[1]
+                    else :
+                        strB1 +=", "+menu[1]
                 elif menu[6] == u"B2":
-                    strB2 += menu[5]+" "+menu[1]+"\n"
+                    strB2 += "\n"
+                    strB2 += menu[5]
+                    if menu[7] == 1 :
+                        strB2 +=" "+menu[1]
+                    else :
+                        strB2 +=", "+menu[1]
                     cntB2 += 1
             
             str_message += strB1
@@ -59,6 +69,7 @@ def Message():
             
             str_message += u"\n맛있는 식사하세요!"
             img_url = random.choice(menu_db_list[2])[4]
+            
         elif content == u"랜덤추천":
            
             menu = []

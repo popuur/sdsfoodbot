@@ -67,8 +67,8 @@ class sdsfood:
                 menu.append(store_str+" "+i.get_text())
         return menu
     
-    def get_menu_from_parse(self, classId, menu_html):
-        #0:id, 1:name, 2:material, 3:kcal, 4:img, 5:store_name, 6:floor
+    def get_menu_from_parse(self, classId, menu_html, num):
+        #0:id, 1:name, 2:material, 3:kcal, 4:img, 5:store_name, 6:floor, 7:order_num
         menu = [] 
         menu.append(classId)
         menu_name = menu_html.find("span", {'style' : 'font-size: 16px;font-weight: bold'})
@@ -95,6 +95,7 @@ class sdsfood:
             menu.append("")
         menu.append(self.store_name_list[classId])
         menu.append(self.store_floor_list[classId])
+        menu.append(num)
         
         return menu
         
@@ -107,10 +108,12 @@ class sdsfood:
             menu = [] #0:id, 1:name, 2:material, 3:kcal, 4:img, 5:store_name, 6:floor
             if store :
                 store_list = store.find_all('tr')
+                num = 1
                 for i in store_list:
-                    menu = self.get_menu_from_parse(id, i)                   
+                    menu = self.get_menu_from_parse(id, i, num)                   
                     if menu :              
                         menu_list.append(menu)
+                        num += 1
                         
         return menu_list
     
@@ -138,7 +141,7 @@ class sdsfood:
         dt = datetime.datetime.now()
         day_hour = dt.strftime("%H")
         day_order = self.check_time(day_hour)
-        day_num = dt.strftime("%Y%m%d%H")+"_"+str(day_order)
+        day_num = dt.strftime("%Y%m%d")+"_"+str(day_order)
         return day_num
     
     
