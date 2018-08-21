@@ -14,8 +14,8 @@ class sds_menu(ndb.Model):
 class sdsfood:
     #코1, 코2, 웨스, 탕맛, 가즈, 테킷, 씽푸, 미각, 나폴, 비빈, 아시, 쉐프
     store_id_list = ("E59C", "E59D", "E59E", "E59F", "E59G", "E59H", "E5E6", "E5E7", "E5E8", "E5E9", "E5EA", "E5EB")
-    store_name_list = {"E59C":u"[코1]", "E59D":u"[코2]", "E59E":u"[웨스]", "E59F":u"[탕맛]", "E59G":u"[가츠]", "E59H":u"[테킷]"
-                       , "E5E6":u"[씽푸]", "E5E7":u"[미각]", "E5E8":u"[나폴]", "E5E9":u"[비빈]", "E5EA":u"[아시]", "E5EB":u"[쉐프]"}
+    store_name_list = {"E59C":u"[코1]", "E59D":u"[코2]", "E59E":u"[웨스턴]", "E59F":u"[탕맛]", "E59G":u"[가츠엔]", "E59H":u"[테킷]"
+                       , "E5E6":u"[씽푸]", "E5E7":u"[미각면]", "E5E8":u"[나폴리]", "E5E9":u"[비빈]", "E5EA":u"[아시안]", "E5EB":u"[쉐프]"}
     store_floor_list = {"E59C":u"B1", "E59D":u"B1", "E59E":u"B1", "E59F":u"B1", "E59G":u"B1", "E59H":u"B1"
                    , "E5E6":u"B2", "E5E7":u"B2", "E5E8":u"B2", "E5E9":u"B2", "E5EA":u"B2", "E5EB":u"B2"}
 
@@ -129,12 +129,14 @@ class sdsfood:
     def check_time(self, hour):
         order = 0
         
-        if hour >= 1 and hour < 8 :
+        if hour >= 6 and hour < 10 :
+            order = 1
+        elif hour >= 11 and hour < 14 :
             order = 2
-        elif hour >= 8 and hour < 20 :
+        elif hour >= 17 and hour < 20 :
             order = 3
         else :
-            order = 1
+            order = 0
         return order
 
     def get_order_time(self):

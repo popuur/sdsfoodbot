@@ -48,17 +48,13 @@ def Message():
             cntB2 = 0
             for menu in menu_db_list[2]:
                 if menu[6] == u"B1":
-                    strB1 += "\n"
-                    strB1 += menu[5]
                     if menu[7] == 1 :
-                        strB1 +=" "+menu[1]
+                        strB1 += "\n"+menu[5]+" "+menu[1]
                     else :
                         strB1 +=", "+menu[1]
                 elif menu[6] == u"B2":
-                    strB2 += "\n"
-                    strB2 += menu[5]
                     if menu[7] == 1 :
-                        strB2 +=" "+menu[1]
+                        strB2 += "\n"+menu[5]+" "+menu[1]
                     else :
                         strB2 +=", "+menu[1]
                     cntB2 += 1
@@ -67,7 +63,7 @@ def Message():
             if cntB2 > 0:
                 str_message += strB2
             
-            str_message += u"\n맛있는 식사하세요!"
+            str_message += u"\n\n맛있는 식사하세요!"
             img_url = random.choice(menu_db_list[2])[4]
             
         elif content == u"랜덤추천":
@@ -75,7 +71,7 @@ def Message():
             menu = []
             menu = random.choice(menu_db_list[2])
             str_message += u"\n* "+menu[6]+"\n"+menu[5]+" "+menu[1]
-            str_message += "\n"
+            str_message += "  "
             str_message += menu[3]
             str_message += u"\n\n추천메뉴와 함께 맛있는 식사하세요!"
             img_url = menu[4]
@@ -87,7 +83,7 @@ def Message():
     if img_url : 
         dataSend = {
             "message": {
-               "text": str_message+"\n"+end,
+               "text": str_message+"\n",
                 "photo": {
                     "url": img_url,
                     "width": 600,
@@ -102,7 +98,7 @@ def Message():
     else :
         dataSend = {
             "message": {
-               "text": str_message+"\n"+end
+               "text": str_message+"\n"
             },
             "keyboard": {
                 "type": "buttons",
