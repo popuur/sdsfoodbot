@@ -43,7 +43,7 @@ def Message():
         str_message += menu_db_list[1]
         if content == u"잠실식단":
             strB1 = u"\n* B1" 
-            strB2 = u"\n* B2" 
+            strB2 = u"\n\n* B2" 
             
             cntB2 = 0
             for menu in menu_db_list[2]:

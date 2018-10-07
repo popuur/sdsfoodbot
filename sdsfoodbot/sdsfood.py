@@ -129,19 +129,25 @@ class sdsfood:
     def check_time(self, hour):
         order = 0
         
-        if hour >= 6 and hour < 10 :
+        if hour >= 15 or hour < 1 :
             order = 1
-        elif hour >= 11 and hour < 14 :
+        elif hour >= 1 and hour < 2:
+            order = 11
+        elif hour >= 2 and hour < 5 :
             order = 2
-        elif hour >= 17 and hour < 20 :
+        elif hour >= 5 and hour < 8 :
+            order = 22
+        elif hour >= 8 and hour < 11 :
             order = 3
+        elif hour >= 11 and hour < 15 :
+            order = 33
         else :
             order = 0
         return order
 
     def get_order_time(self):
         dt = datetime.datetime.now()
-        day_hour = dt.strftime("%H")
+        day_hour = int(dt.strftime("%H"))
         day_order = self.check_time(day_hour)
         day_num = dt.strftime("%Y%m%d")+"_"+str(day_order)
         return day_num
